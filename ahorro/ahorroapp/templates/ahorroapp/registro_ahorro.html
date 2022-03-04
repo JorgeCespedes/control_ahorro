@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <a href="{% url 'ahorro:home' %}" class="btn btn-primary" style="width: 200px;">Home</a>
+
+    <p class="fs-1 text-center">Registro de gastos</p>
+
+    <div class="row" style="text-align: center;">
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <table class="table">
+                {{ form.as_table }}
+            </table>
+            <button class="btn btn-primary form-control" type="submit">Register</button>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

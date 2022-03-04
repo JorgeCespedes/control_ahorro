@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'ahorro:home' %}" class="btn btn-primary" style="width: 200px;">Home</a>
+    <a href="{% url 'ahorro:registro' %}" class="btn btn-primary" style="width: 200px;">Agregar</a>
+
+    <div class="row">
+        <h3 class="fs-1 text-center">Detalle</h3>
+
+        <table class="table table-hover">
+            <thead class="text-center">
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Millonaria Dólares</th>
+                <th>Tipo de cambio</th>
+                <th>Millonaria Soles</th>
+                <th>AFP Soles</th>
+                <th>Ahorro Soles</th>
+                <th>Sueldo Soles</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Proyección</th>
+            </thead>
+            <tbody class="text-center">
+                {% for detalle in detalles %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ detalle.fecha|date:"j F Y" }}</td>
+                    <td>{{ detalle.cuenta_millonaria_dolares }}</td>
+                    <td>{{ detalle.tipo_de_cambio }}</td>
+                    <td>{{ detalle.cuenta_millonaria_soles }}</td>
+                    <td>{{ detalle.cuenta_AFP_soles }}</td>
+                    <td>{{ detalle.cuenta_ahorro_soles }}</td>
+                    <td>{{ detalle.cuenta_sueldo_soles }}</td>
+                    <td>
+                        <a href="{% url 'ahorro:update' detalle.pk %}" id='{{ detalle.pk }}' class="btn btn-success">edit</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'ahorro:delete' detalle.pk %}" id='{{ detalle.pk }}' class="btn btn-danger confirmaEliminar">delete</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'ahorro:proyeccion' detalle.pk %}" id='{{ detalle.pk }}'
+                            class="btn btn-primary">proyección</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <a href="{% url 'ahorro:detalle' %}" class="btn btn-primary" style="width: 200px;">Detalle</a>
+    <a href="{% url 'ahorro:home' %}" class="btn btn-primary" style="width: 200px;">Home</a>
+
+    <div class="row">
+        <h3 class="fs-1 text-center">Proyección</h3>
+
+        <p> <b> Fecha: </b> {{ proyecciones.fecha|date:"j F Y" }} </p>
+        <p> <b> Tipo de cambio: </b> {{ proyecciones.tipo_de_cambio }} </p>
+        <p> <b> Total: </b> S/. {{ totales }} </p>
+    </div>
+
+    <div class="row">
+
+        <table class="table table-hover">
+
+            <thead class="text-center">
+                <th>Gasto mensual</th>
+                <th>Años</th>
+                <th>Meses</th>
+                <th>Fecha fin</th>
+            </thead>
+
+            <tbody class="text-center">
+                {% for item1, item2, item3,item4,item5 in lista_compacta %}
+                <tr>
+                    <td> S/. {{ item1 }} </td>
+                    <td> {{ item2 }}  años</td>
+                    <td> {{ item3 }}  meses</td>
+                    <td> {{proyecciones.fecha|date:"j"}} {{item5}} {{item4}}  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="row">
+        <p> <b> Actulizado: </b> {{ proyecciones.updated|date:"j F Y" }} </p>
+    </div>
+
+</div>
+
+{% endblock %}
